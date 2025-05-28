@@ -1,0 +1,23 @@
+@use '../core/variables' as vars;
+
+body {
+    padding: 2rem;
+    height: 100vh;
+
+    font-family: vars.$font-main;
+}
+
+.main__containerIcons {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px;
+    display: flex;
+    gap: 15px;
+
+    &_element {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

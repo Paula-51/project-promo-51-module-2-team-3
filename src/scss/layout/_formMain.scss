@@ -2,12 +2,13 @@
 
 .all {
     display: flex;
+   
 }
   
 /*Sección del formulario */
 .create {
     flex: 1;
-    background-color: var(--color-bg);
+    background-color: vars.$color-bg;
     border-radius: 15px;
     padding: 2rem;
  }
@@ -18,7 +19,7 @@
   }
   
   h2 {
-    color: var(--color-emphasis);
+    color: vars.$color-emphasis;
     margin-bottom: 1rem;
   }
   
@@ -34,8 +35,8 @@
     margin-top: 0.3rem;
     border-radius: 0.5rem;
     border: none;
-    background: var(--color-primary);
-    color: var(--color-emphasis)
+    background: vars.$color-primary;
+    color: vars.$color-emphasis;
   }
   
   input[type="color"] {
@@ -48,33 +49,32 @@
     padding: 0.7rem 1.5rem;
     border: none;
     border-radius: 0.7rem;
-    background: var(--color-secondary);
-    color: var(--color-emphasis);
+    background: vars.$color-secondary;
+    color: vars.$color-emphasis;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 10px #ffd700;
   }
   
   /* Sección de previsualización */
   .preview {
     flex: 1;
-    background: var(--color-secondary);
+    background: vars.$color-primary;
     border-radius: 1rem;
     padding: 2rem;
-    box-shadow: 0 0 15px #3498db;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
   .preview__card {
-    background: var(--color-primary);
+    background: vars.$color-emphasis;
     padding: 1.5rem;
     border-radius: 1rem;
+    color:#9b59b6;
     width: 100%;
     text-align: center;
-    border: 2px solid #ffd700;
-    box-shadow: 0 0 10px #9b59b6;
+    border: 2px solid vars.$color-secondary;
+    box-shadow: 0 0 10px vars.$color-secondary;
   }
   
   .preview__card p {
@@ -88,7 +88,7 @@
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border: 2px solid #ffd700;
+    border: 2px solid #ff7300;
   }
   
   .preview button {

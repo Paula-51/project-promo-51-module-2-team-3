@@ -1,35 +1,18 @@
-@use '../core/variables' as vars;
+@use "../core/variables" as vars;
 
 .all {
-    display: flex;
-    padding: 5%;
-   
+  display: flex;
+  padding: 5%;
+
 }
-  
+
 /*Sección del formulario */
 .create {
-    flex: 1;
-    background-color: vars.$color-bg;
-    border-radius: 15px;
-    padding: 2rem;
- }
-  
-  /* Estilos para secciones del formulario  elige tu diseño */
-  .design, .form, .share {
-    margin-bottom: 1rem;
-    padding-inline: 3rem;
-  }
-  
-  h2 {
-    color: vars.$color-emphasis;
-    margin-bottom: 1rem;
-  }
-  
-  label {
-    display: block;
-    margin-top: 1rem;
-    font-size: 18px;
-  }
+  flex: 1;
+  background-color: vars.$color-bg;
+  border-radius: 15px;
+  padding: 2rem;
+}
 
   .radio-group label {
     display: flex;

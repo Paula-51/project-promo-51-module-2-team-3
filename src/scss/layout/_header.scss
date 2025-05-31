@@ -1,5 +1,4 @@
-.containerHeader{
-  background-image: url(./images/stars.png);
+.containerHeader {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +7,7 @@
   &__logo {
     width: 100px;
   }
-  
+
   &__h1 {
     font-size: 40px;
     font-weight: bold;
@@ -19,19 +18,16 @@
 
   @media (min-width: 420px) {
     flex-direction: row;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    gap: 20px; 
+    gap: 20px;
 
     &__logo {
       width: 70px;
     }
 
     &__h1 {
-      padding: 0; 
+      padding: 0;
     }
-  } 
+  }
 }
-
-
-

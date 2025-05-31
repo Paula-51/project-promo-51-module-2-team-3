@@ -1,12 +1,12 @@
 "use strict";
 
 // ===== CONST: Seletores e dados fixos =====
-const imageInput = document.querySelector("#image");
-const imagePreview = document.querySelector(".preview__card img");
-const colorInput = document.querySelector("#color");
-const signoInput = document.querySelector("#signo-zodiacal");
+const imageInput = document.querySelector(".js_image");
+const imagePreview = document.querySelector(".js_preview__cardimg");
+const colorInput = document.querySelector(".js_color");
+const signoInput = document.querySelector(".js_signo-zodiacal");
 const signoPreview = document.querySelector(".js_signoPreview");
-const resetButton = document.querySelector(".preview button");
+const resetButton = document.querySelector(".js_resetBtn");
 const form = document.querySelector(".js_containerFill form");
 const formBtn = document.querySelector(".js_formBtn");
 const shareSection = document.querySelector(".js_containerShare");
@@ -35,7 +35,6 @@ if (shareSection) {
 
 // ===== FUNÇÕES =====
 
-// Alterna seções abertas/fechadas com troca do ícone
 function toggleSection(btnClass, contentClass) {
   const button = document.querySelector(`.${btnClass}`);
   const content = document.querySelector(`.${contentClass}`);
@@ -51,24 +50,6 @@ function toggleSection(btnClass, contentClass) {
   });
 }
 
-// Atualiza preview de texto com valor do input e opcional transformação
-function updatePreview(inputSelector, previewSelector, transformFn) {
-  const input = document.querySelector(inputSelector);
-  const preview = document.querySelector(previewSelector);
-  if (!input || !preview) return;
-
-  const update = () => {
-    let value = input.value;
-    if (transformFn) value = transformFn(value);
-    preview.textContent = value || preview.getAttribute("data-placeholder");
-  };
-
-  input.addEventListener("input", update);
-  input.addEventListener("change", update);
-  update();
-}
-
-// Conecta input com preview e localStorage, incluindo transformação opcional
 function connectInputToPreviewAndStorage(
   inputSelector,
   previewSelector,
@@ -94,7 +75,6 @@ function connectInputToPreviewAndStorage(
   update();
 }
 
-// Atualiza signo no preview com emoji, salva no localStorage
 function updateSigno() {
   if (!signoInput || !signoPreview) return;
 
@@ -108,7 +88,6 @@ function updateSigno() {
   }
 }
 
-// Inicializa imagem carregada, preview e localStorage
 function initImage() {
   if (!imageInput || !imagePreview) return;
 
@@ -127,7 +106,6 @@ function initImage() {
     }
   });
 
-  // Restaurar imagem salva
   window.addEventListener("load", () => {
     const savedImage = localStorage.getItem("imageData");
     if (savedImage) {
@@ -138,7 +116,6 @@ function initImage() {
   });
 }
 
-// Inicializa input de cor com localStorage
 function initColor() {
   if (!colorInput) return;
   const savedColor = localStorage.getItem("form_color");
@@ -149,7 +126,6 @@ function initColor() {
   });
 }
 
-// Inicializa botão reset para limpar formulário, preview e localStorage
 function initReset() {
   if (!resetButton || !form || !imagePreview) return;
 
@@ -159,14 +135,14 @@ function initReset() {
     imagePreview.src = "https://placecats.com/100/100";
 
     document.querySelectorAll(".preview__card p").forEach((preview) => {
-      preview.textContent = preview.getAttribute("data-placeholder");
+      const placeholder = preview.getAttribute("data-placeholder");
+      if (placeholder) preview.textContent = placeholder;
     });
 
     localStorage.clear();
   });
 }
 
-// Envia dados do formulário para API e mostra URL gerada
 async function sendFormData(event) {
   event.preventDefault();
 
@@ -210,12 +186,10 @@ async function sendFormData(event) {
 
 // ===== EXECUÇÃO =====
 
-// Alternar seções
 toggleSection("js_toggleDesign", "js_containerDesign");
 toggleSection("js_toggleFill", "js_containerFill");
 toggleSection("js_toggleShare", "js_containerShare");
 
-// Conectar inputs com preview e armazenamento
 connectInputToPreviewAndStorage("#name", ".js_namePreview", "form_name");
 connectInputToPreviewAndStorage(
   "#birthDate",
@@ -239,7 +213,6 @@ connectInputToPreviewAndStorage(
   (val) => (val ? (val.startsWith("@") ? val : "@" + val) : "")
 );
 
-// Inicializar funcionalidades específicas
 initImage();
 initColor();
 

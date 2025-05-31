@@ -32,7 +32,11 @@
             <input type="text" id="name" placeholder="Escribe aquí tu nombre" />
 
             <label for="zodiacSign">Signo:</label>
-            <select id="signo-zodiacal" name="signo-zodiacal">
+            <select
+              id="signo-zodiacal"
+              name="signo-zodiacal"
+              class="js_signo-zodiacal"
+            >
               <option value="">Elige tu signo</option>
               <option value="aries">Aries ♈</option>
               <option value="tauro">Touro ♉</option>
@@ -49,7 +53,7 @@
             </select>
 
             <label for="color">Elige tu color favorito:</label>
-            <input type="color" id="color" />
+            <input type="color" id="color" class="js_color" />
 
             <label for="birthDate">Tu fecha de nacimiento:</label>
             <input type="date" id="birthDate" />
@@ -61,7 +65,7 @@
             <input type="text" id="instagram" placeholder="@hola" />
 
             <label for="image">Sube una foto tuya:</label>
-            <input type="file" id="image" />
+            <input type="file" id="image" class="js_image" />
           </form>
         </div>
       </section>
@@ -81,14 +85,31 @@
       <section>
         <h2>Previsualización tarjeta</h2>
         <div class="preview__card">
-          <p class="js_namePreview">Aquí va el nombre</p>
-          <p class="js_signoPreview">Aquí va el signo</p>
-          <img src="https://placecats.com/100/100" alt="foto" />
-          <p class="js_datePreview">Aquí va la fecha de nacimiento</p>
-          <p class="js_mobilePreview">Aquí va el mobil</p>
-          <p class="js_igPreview">Aquí va @hola</p>
+          <p class="js_namePreview" data-placeholder="Aquí va el nombre">
+            Aquí va el nombre
+          </p>
+          <p class="js_signoPreview" data-placeholder="Aquí va el signo">
+            Aquí va el signo
+          </p>
+          <img
+            class="js_preview__cardimg"
+            src="https://placecats.com/100/100"
+            alt="foto"
+          />
+          <p
+            class="js_datePreview"
+            data-placeholder="Aquí va la fecha de nacimiento"
+          >
+            Aquí va la fecha de nacimiento
+          </p>
+          <p class="js_mobilePreview" data-placeholder="Aquí va el mobil">
+            Aquí va el mobil
+          </p>
+          <p class="js_igPreview" data-placeholder="Aquí va @hola">
+            Aquí va @hola
+          </p>
         </div>
-        <button>Reset</button>
+        <button class="js_resetBtn">Reset</button>
       </section>
     </div>
   </div>

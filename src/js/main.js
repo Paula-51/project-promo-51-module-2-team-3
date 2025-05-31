@@ -1,23 +1,57 @@
 "use strict";
 
-// Alternar seções
+// ===== CONST: Seletores e dados fixos =====
+const imageInput = document.querySelector("#image");
+const imagePreview = document.querySelector(".preview__card img");
+const colorInput = document.querySelector("#color");
+const signoInput = document.querySelector("#signo-zodiacal");
+const signoPreview = document.querySelector(".js_signoPreview");
+const resetButton = document.querySelector(".preview button");
+const form = document.querySelector(".js_containerFill form");
+const formBtn = document.querySelector(".js_formBtn");
+const shareSection = document.querySelector(".js_containerShare");
+
+const signosConIconos = {
+  aries: "Aries ♈",
+  tauro: "Touro ♉",
+  geminis: "Geminis ♊",
+  cancer: "Cancer ♋",
+  leo: "Leo ♌",
+  virgo: "Virgo ♍",
+  libra: "Libra ♎",
+  escorpio: "Escorpio ♏",
+  sagitario: "Sagitario ♐",
+  capricornio: "Capricórnio ♑",
+  acuario: "Acuario ♒",
+  piscis: "Piscis ♓",
+};
+
+// Criar elemento para saída da URL da tarjeta
+const urlOutput = document.createElement("p");
+urlOutput.style.wordBreak = "break-word";
+if (shareSection) {
+  shareSection.appendChild(urlOutput);
+}
+
+// ===== FUNÇÕES =====
+
+// Alterna seções abertas/fechadas com troca do ícone
 function toggleSection(btnClass, contentClass) {
   const button = document.querySelector(`.${btnClass}`);
   const content = document.querySelector(`.${contentClass}`);
+  if (!button || !content) return;
   const icon = button.querySelector("i");
 
   button.addEventListener("click", () => {
     content.classList.toggle("collapsed");
-    icon.classList.toggle("fa-arrow-up");
-    icon.classList.toggle("fa-arrow-down");
+    if (icon) {
+      icon.classList.toggle("fa-arrow-up");
+      icon.classList.toggle("fa-arrow-down");
+    }
   });
 }
 
-toggleSection("js_toggleDesign", "js_containerDesign");
-toggleSection("js_toggleFill", "js_containerFill");
-toggleSection("js_toggleShare", "js_containerShare");
-
-// Atualizar preview de texto
+// Atualiza preview de texto com valor do input e opcional transformação
 function updatePreview(inputSelector, previewSelector, transformFn) {
   const input = document.querySelector(inputSelector);
   const preview = document.querySelector(previewSelector);
@@ -34,28 +68,7 @@ function updatePreview(inputSelector, previewSelector, transformFn) {
   update();
 }
 
-// Atualizar imagem
-const imageInput = document.querySelector("#image");
-const imagePreview = document.querySelector(".preview__card img");
-
-if (imageInput && imagePreview) {
-  imageInput.addEventListener("change", () => {
-    const file = imageInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        imagePreview.src = reader.result;
-        localStorage.setItem("imageData", reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      imagePreview.src = "https://placecats.com/100/100";
-      localStorage.removeItem("imageData");
-    }
-  });
-}
-
-// Campos do formulário → preview + localStorage
+// Conecta input com preview e localStorage, incluindo transformação opcional
 function connectInputToPreviewAndStorage(
   inputSelector,
   previewSelector,
@@ -81,92 +94,69 @@ function connectInputToPreviewAndStorage(
   update();
 }
 
-// Inputs com preview
-connectInputToPreviewAndStorage("#name", ".js_namePreview", "form_name");
+// Atualiza signo no preview com emoji, salva no localStorage
+function updateSigno() {
+  if (!signoInput || !signoPreview) return;
 
-connectInputToPreviewAndStorage(
-  "#birthDate",
-  ".js_datePreview",
-  "form_birthDate",
-  (val) => {
-    if (!val) return "";
-    const date = new Date(val);
-    return date.toLocaleDateString();
+  const signo = signoInput.value;
+  localStorage.setItem("form_signo", signo);
+
+  if (signo && signosConIconos[signo]) {
+    signoPreview.textContent = signosConIconos[signo];
+  } else {
+    signoPreview.textContent = signoPreview.getAttribute("data-placeholder");
   }
-);
+}
 
-connectInputToPreviewAndStorage(
-  "#mobileNumber",
-  ".js_mobilePreview",
-  "form_mobileNumber"
-);
+// Inicializa imagem carregada, preview e localStorage
+function initImage() {
+  if (!imageInput || !imagePreview) return;
 
-connectInputToPreviewAndStorage(
-  "#instagram",
-  ".js_igPreview",
-  "form_instagram",
-  (val) => (val ? (val.startsWith("@") ? val : "@" + val) : "")
-);
+  imageInput.addEventListener("change", () => {
+    const file = imageInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        imagePreview.src = reader.result;
+        localStorage.setItem("imageData", reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.src = "https://placecats.com/100/100";
+      localStorage.removeItem("imageData");
+    }
+  });
 
-// Cor
-const colorInput = document.querySelector("#color");
-if (colorInput) {
+  // Restaurar imagem salva
+  window.addEventListener("load", () => {
+    const savedImage = localStorage.getItem("imageData");
+    if (savedImage) {
+      imagePreview.src = savedImage;
+    } else {
+      imagePreview.src = "https://placecats.com/100/100";
+    }
+  });
+}
+
+// Inicializa input de cor com localStorage
+function initColor() {
+  if (!colorInput) return;
   const savedColor = localStorage.getItem("form_color");
   if (savedColor) colorInput.value = savedColor;
+
   colorInput.addEventListener("input", () => {
     localStorage.setItem("form_color", colorInput.value);
   });
 }
 
-// Signos com emojis reais e nomes em português
-const signosConIconos = {
-  aries: "Aries ♈",
-  tauro: "Touro ♉",
-  geminis: "Geminis ♊",
-  cancer: "Cancer ♋",
-  leo: "Leo ♌",
-  virgo: "Virgo ♍",
-  libra: "Libra ♎",
-  escorpio: "Escorpio ♏",
-  sagitario: "Sagitario ♐",
-  capricornio: "Capricórnio ♑",
-  acuario: "Acuario ♒",
-  piscis: "Piscis ♓",
-};
+// Inicializa botão reset para limpar formulário, preview e localStorage
+function initReset() {
+  if (!resetButton || !form || !imagePreview) return;
 
-const signoInput = document.querySelector("#signo-zodiacal");
-const signoPreview = document.querySelector(".js_signoPreview");
-
-if (signoInput && signoPreview) {
-  const savedSigno = localStorage.getItem("form_signo");
-  if (savedSigno) signoInput.value = savedSigno;
-
-  const updateSigno = () => {
-    const signo = signoInput.value;
-    localStorage.setItem("form_signo", signo);
-
-    if (signo && signosConIconos[signo]) {
-      signoPreview.textContent = signosConIconos[signo];
-    } else {
-      signoPreview.textContent = signoPreview.getAttribute("data-placeholder");
-    }
-  };
-
-  signoInput.addEventListener("change", updateSigno);
-  updateSigno();
-}
-
-// Reset botão
-const resetButton = document.querySelector(".preview button");
-const form = document.querySelector(".js_containerFill form");
-
-if (resetButton && form) {
   resetButton.addEventListener("click", () => {
     form.reset();
 
-    if (imagePreview) {
-      imagePreview.src = "https://placecats.com/100/100";
-    }
+    imagePreview.src = "https://placecats.com/100/100";
 
     document.querySelectorAll(".preview__card p").forEach((preview) => {
       preview.textContent = preview.getAttribute("data-placeholder");
@@ -176,29 +166,19 @@ if (resetButton && form) {
   });
 }
 
-// Restaurar imagem do localStorage ao carregar
-window.addEventListener("load", () => {
-  const savedImage = localStorage.getItem("imageData");
-  if (savedImage && imagePreview) {
-    imagePreview.src = savedImage;
-  }
-});
-
-// === ENVIAR FORMULÁRIO E OBTER URL DA TARJETA ===
-
-const formBtn = document.querySelector(".js_formBtn");
-const shareSection = document.querySelector(".js_containerShare");
-const urlOutput = document.createElement("p");
-urlOutput.style.wordBreak = "break-word";
-shareSection.appendChild(urlOutput);
-
-formBtn.addEventListener("click", async (event) => {
+// Envia dados do formulário para API e mostra URL gerada
+async function sendFormData(event) {
   event.preventDefault();
 
   urlOutput.textContent = "⏳ Criando tarjeta...";
 
+  const selectedDesign = document.querySelector(
+    'input[name="elemento"]:checked'
+  );
+  const field1Value = selectedDesign ? selectedDesign.value : "";
+
   const dataToSend = {
-    field1: 0,
+    field1: field1Value,
     field2: document.querySelector("#name").value,
     field3: document.querySelector("#signo-zodiacal").value,
     field4: document.querySelector("#birthDate").value,
@@ -226,4 +206,52 @@ formBtn.addEventListener("click", async (event) => {
   } catch (error) {
     urlOutput.textContent = "❌ Erro ao criar a tarjeta: " + error.message;
   }
-});
+}
+
+// ===== EXECUÇÃO =====
+
+// Alternar seções
+toggleSection("js_toggleDesign", "js_containerDesign");
+toggleSection("js_toggleFill", "js_containerFill");
+toggleSection("js_toggleShare", "js_containerShare");
+
+// Conectar inputs com preview e armazenamento
+connectInputToPreviewAndStorage("#name", ".js_namePreview", "form_name");
+connectInputToPreviewAndStorage(
+  "#birthDate",
+  ".js_datePreview",
+  "form_birthDate",
+  (val) => {
+    if (!val) return "";
+    const date = new Date(val);
+    return date.toLocaleDateString();
+  }
+);
+connectInputToPreviewAndStorage(
+  "#mobileNumber",
+  ".js_mobilePreview",
+  "form_mobileNumber"
+);
+connectInputToPreviewAndStorage(
+  "#instagram",
+  ".js_igPreview",
+  "form_instagram",
+  (val) => (val ? (val.startsWith("@") ? val : "@" + val) : "")
+);
+
+// Inicializar funcionalidades específicas
+initImage();
+initColor();
+
+if (signoInput && signoPreview) {
+  const savedSigno = localStorage.getItem("form_signo");
+  if (savedSigno) signoInput.value = savedSigno;
+  signoInput.addEventListener("change", updateSigno);
+  updateSigno();
+}
+
+initReset();
+
+if (formBtn) {
+  formBtn.addEventListener("click", sendFormData);
+}

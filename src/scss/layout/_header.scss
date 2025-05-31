@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .header__h1 {
   font-size: 40px;
   font-weight: bold;
@@ -5,3 +6,41 @@
 }
 
 
+=======
+.containerHeader{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+  &__logo {
+    width: 100px;
+  }
+  
+  &__h1 {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+
+  @media (min-width: 420px) {
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    gap: 20px; 
+
+    &__logo {
+      width: 70px;
+    }
+
+    &__h1 {
+      padding: 0; 
+    }
+  } 
+}
+
+
+
+>>>>>>> b69bd0c2f7848eabc8343883f5b6c4a124471eda

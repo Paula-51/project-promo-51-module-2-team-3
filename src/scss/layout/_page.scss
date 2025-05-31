@@ -15,9 +15,11 @@ body {
     justify-content: space-between;
     padding: 2rem;
     gap: 1rem;
-    max-width: 65%;
+    max-width: 100%;
   }
 
   /*Previsualización*/
 
-
+  .collapsed {
+    display: none;
+  } 

@@ -2,18 +2,18 @@
   <div class="all">
     <div class="create">
       <section class="design">
-        <div>
+        <div class="js_toggleDesign">
           <h2>Elige tu diseño:</h2>
           <i class="fa-solid fa-arrow-down"></i>
         </div>
-        <div class="js_containerDesign">
-          <input type="radio" id="design1" name="elemento" />
+        <div class="js_containerDesign collapsed">
+          <input type="radio" id="design1" name="elemento" value="1" />
           <label for="design1">Agua (escorpio, piscis, cancer)</label>
 
-          <input type="radio" id="design2" name="elemento" />
+          <input type="radio" id="design2" name="elemento" value="2" />
           <label for="design2">Fuego (sagitario, leo, aries)</label>
 
-          <input type="radio" id="design3" name="elemento" />
+          <input type="radio" id="design3" name="elemento" value="3" />
           <label for="design3">Tierra (capricornio, tauro, virgo)</label>
 
           <input type="radio" id="design4" name="elemento" />
@@ -22,30 +22,30 @@
       </section>
 
       <section class="form">
-        <div>
+        <div class="js_toggleFill">
           <h2>Rellena:</h2>
           <i class="fa-solid fa-arrow-down js_headerFill"></i>
         </div>
-        <div class="js_containerFill">
-          <form action="POST">
+        <div class="js_containerFill collapsed">
+          <form method="POST">
             <label for="name">Nombre:</label>
             <input type="text" id="name" placeholder="Escribe aquí tu nombre" />
 
             <label for="zodiacSign">Signo:</label>
             <select id="signo-zodiacal" name="signo-zodiacal">
               <option value="">Elige tu signo</option>
-              <option value="aries">Aries</option>
-              <option value="tauro">Tauro</option>
-              <option value="geminis">Géminis</option>
-              <option value="cancer">Cáncer</option>
-              <option value="leo">Leo</option>
-              <option value="virgo">Virgo</option>
-              <option value="libra">Libra</option>
-              <option value="escorpio">Escorpio</option>
-              <option value="sagitario">Sagitario</option>
-              <option value="capricornio">Capricornio</option>
-              <option value="acuario">Acuario</option>
-              <option value="piscis">Piscis</option>
+              <option value="aries">Aries ♈</option>
+              <option value="tauro">Touro ♉</option>
+              <option value="geminis">Geminis ♊</option>
+              <option value="cancer">Cancer ♋</option>
+              <option value="leo">Leo ♌</option>
+              <option value="virgo">Virgo ♍</option>
+              <option value="libra">Libra ♎</option>
+              <option value="escorpio">Escorpio ♏</option>
+              <option value="sagitario">Sagitario ♐</option>
+              <option value="capricornio">Capricórnio ♑</option>
+              <option value="acuario">Acuario ♒</option>
+              <option value="piscis">Piscis ♓</option>
             </select>
 
             <label for="color">Elige tu color favorito:</label>
@@ -61,17 +61,17 @@
             <input type="text" id="instagram" placeholder="@hola" />
 
             <label for="image">Sube una foto tuya:</label>
-            <input type="file" id="image" alt="image" />
+            <input type="file" id="image" />
           </form>
         </div>
       </section>
 
       <section class="share">
-        <div>
+        <div class="js_toggleShare">
           <h2>Comparte</h2>
           <i class="fa-solid fa-arrow-down js_headerShare"></i>
         </div>
-        <div class="js_containerShare">
+        <div class="js_containerShare collapsed">
           <button class="formBtn js_formBtn">Crea tarjeta</button>
         </div>
       </section>

@@ -15,7 +15,7 @@ const elementRadios = document.querySelectorAll('input[name="elemento"]');
 
 const signosConIconos = {
   aries: "Aries ♈",
-  tauro: "Touro ♉",
+  tauro: "Tauro ♉",
   geminis: "Geminis ♊",
   cancer: "Cancer ♋",
   leo: "Leo ♌",
@@ -23,7 +23,7 @@ const signosConIconos = {
   libra: "Libra ♎",
   escorpio: "Escorpio ♏",
   sagitario: "Sagitario ♐",
-  capricornio: "Capricórnio ♑",
+  capricornio: "Capricornio ♑",
   acuario: "Acuario ♒",
   piscis: "Piscis ♓",
 };

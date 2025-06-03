@@ -12,10 +12,9 @@ const shareSection = document.querySelector(".js_containerShare");
 const previewCard = document.querySelector(".js_preview_card");
 const elementRadios = document.querySelectorAll('input[name="elemento"]');
 
-
 const signosConIconos = {
   aries: "Aries ♈",
-  tauro: "Tauro ♉",
+  tauro: "Touro ♉",
   geminis: "Geminis ♊",
   cancer: "Cancer ♋",
   leo: "Leo ♌",
@@ -23,19 +22,24 @@ const signosConIconos = {
   libra: "Libra ♎",
   escorpio: "Escorpio ♏",
   sagitario: "Sagitario ♐",
-  capricornio: "Capricornio ♑",
+  capricornio: "Capricórnio ♑",
   acuario: "Acuario ♒",
   piscis: "Piscis ♓",
 };
 
-// Crear elemento "p" para generar la ul de la tarjeta
+// Crear elemento "p" para mostrar URL
 const urlOutput = document.createElement("p");
 urlOutput.style.wordBreak = "break-word";
 if (shareSection) {
   shareSection.appendChild(urlOutput);
 }
 
-// Funciones
+// Função para formatar Instagram
+function formatInstagram(val) {
+  if (!val) return "";
+  if (val.startsWith("@")) return val;
+  return "@" + val;
+}
 
 function toggleSection(btnClass, contentClass) {
   const button = document.querySelector(`.${btnClass}`);
@@ -53,7 +57,9 @@ function toggleSection(btnClass, contentClass) {
 }
 
 function updateCardBackground() {
-  const selectedRadio = document.querySelector('input[name="elemento"]:checked');
+  const selectedRadio = document.querySelector(
+    'input[name="elemento"]:checked'
+  );
   if (!selectedRadio || !previewCard) return;
 
   previewCard.classList.remove("agua", "fuego", "tierra", "aire");
@@ -169,7 +175,7 @@ async function sendFormData(event) {
     field3: document.querySelector("#signo-zodiacal").value,
     field4: document.querySelector("#birthDate").value,
     field5: document.querySelector("#mobileNumber").value,
-    field6: document.querySelector("#instagram").value,
+    field6: formatInstagram(document.querySelector("#instagram").value),
     field7: document.querySelector("#color").value,
     photo: localStorage.getItem("imageData") || "",
   };
@@ -194,7 +200,7 @@ async function sendFormData(event) {
   }
 }
 
-// Ejecución
+// Execução
 
 toggleSection("js_toggleDesign", "js_containerDesign");
 toggleSection("js_toggleFill", "js_containerFill");
@@ -220,11 +226,11 @@ connectInputToPreviewAndStorage(
   "#instagram",
   ".js_igPreview",
   "form_instagram",
-  (val) => (val ? (val.startsWith("@") ? val : "@" + val) : "")
+  formatInstagram
 );
 
 updateCardBackground();
-elementRadios.forEach(radio => {
+elementRadios.forEach((radio) => {
   radio.addEventListener("change", updateCardBackground);
 });
 

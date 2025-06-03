@@ -1,31 +1,33 @@
-@use '../core/variables' as vars;
+@use "../core/variables" as vars;
 
 .all {
-    display: flex;
+  display: flex;
+  padding: 5%;
+
 }
-  
+
 /*Sección del formulario */
 .create {
-    flex: 1;
-    background-color: var(--color-bg);
-    border-radius: 15px;
-    padding: 2rem;
- }
-  
-  /* Estilos para secciones del formulario */
-  .design, .form, .share {
-    margin-bottom: 2rem;
+  flex: 1;
+  background-color: vars.$color-bg;
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+  .radio-group label {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fdfdfd;
+    cursor: pointer;
   }
   
-  h2 {
-    color: var(--color-emphasis);
-    margin-bottom: 1rem;
-  }
-  
-  label {
-    display: block;
-    margin-top: 1rem;
-    font-size: 0.9rem;
+  .radio-group input[type="radio"] {
+    margin-left: 0,2rem;
+    margin-top: -10px;;
   }
   
   input, select {
@@ -34,8 +36,8 @@
     margin-top: 0.3rem;
     border-radius: 0.5rem;
     border: none;
-    background: var(--color-primary);
-    color: var(--color-emphasis)
+    background: vars.$color-primary;
+    color: vars.$color-emphasis;
   }
   
   input[type="color"] {
@@ -48,33 +50,57 @@
     padding: 0.7rem 1.5rem;
     border: none;
     border-radius: 0.7rem;
-    background: var(--color-secondary);
-    color: var(--color-emphasis);
+    background: vars.$color-secondary;
+    color: vars.$color-emphasis;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 10px #ffd700;
   }
   
   /* Sección de previsualización */
   .preview {
     flex: 1;
-    background: var(--color-secondary);
     border-radius: 1rem;
     padding: 2rem;
-    box-shadow: 0 0 15px #3498db;
     display: flex;
     flex-direction: column;
     align-items: center;
+  
+    background-image: url('../images/cat-pattern.jpeg'); // ajusta ruta si es necesario
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .preview {
+    position: relative;
+    overflow: hidden;
+  
+    &::before {
+      content:'';
+      position: absolute;
+      inset: 0;
+      background: rgba(254, 254, 254, 0.733); 
+      z-index: 0;
+      size-adjust: cover;
+    }
+  
+    > * {
+      position: relative;
+      z-index: 1;
+    }
   }
   
+  
   .preview__card {
-    background: var(--color-primary);
+    background: vars.$color-emphasis;
     padding: 1.5rem;
     border-radius: 1rem;
-    width: 100%;
+    color:#9b59b6;
+    width: 400px;
+    height: 500px;
     text-align: center;
-    border: 2px solid #ffd700;
-    box-shadow: 0 0 10px #9b59b6;
+    border: 2px solid vars.$color-secondary;
+    box-shadow: 0 0 10px vars.$color-secondary;
   }
   
   .preview__card p {
@@ -85,10 +111,11 @@
   .preview__card img {
     border-radius: 50%;
     margin: 1rem auto;
-    width: 100px;
-    height: 100px;
+    width:200px;
+    height: 200px;
     object-fit: cover;
-    border: 2px solid #ffd700;
+    border: 2px solid #ff7300;
+    position: center;
   }
   
   .preview button {
@@ -99,8 +126,56 @@
     border: none;
     border-radius: 0.7rem;
     cursor: pointer;
-    box-shadow: 0 0 10px #9b59b6;
+    box-shadow: 0 0 100px #9b59b6;
   }
+
+  //medias queries tablet//
+  @media screen and (max-width: 780px) {
+    .all {
+      flex-direction: column;
+      align-items: center;
+    }
   
+    .create,
+    .preview {
+      width: 100%;
+      max-width: 780px;
+    }
+  }
+  //medias queries mobile//
+  @media screen and (max-width: 430px) {
+    .all {
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+  
+    .create,
+    .preview {
+      padding-right: 1rem;
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    .preview__card {
+      width: 100%;
+    }
+  
+    .preview__card img {
+      width: 150px;
+      height: 150px;
+    }
+  
+    form input,
+    form select,
+    form label {
+      font-size: 1rem;
+    }
+  }
+    form input,
+  form select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 
   

@@ -1,6 +1,5 @@
 "use strict";
 
-// ===== CONST: Seletores e dados fixos =====
 const imageInput = document.querySelector(".js_image");
 const imagePreview = document.querySelector(".js_preview__cardimg");
 const colorInput = document.querySelector(".js_color");
@@ -10,6 +9,9 @@ const resetButton = document.querySelector(".js_resetBtn");
 const form = document.querySelector(".js_containerFill form");
 const formBtn = document.querySelector(".js_formBtn");
 const shareSection = document.querySelector(".js_containerShare");
+const previewCard = document.querySelector(".js_preview_card");
+const elementRadios = document.querySelectorAll('input[name="elemento"]');
+
 
 const signosConIconos = {
   aries: "Aries ♈",
@@ -26,14 +28,14 @@ const signosConIconos = {
   piscis: "Piscis ♓",
 };
 
-// Criar elemento para saída da URL da tarjeta
+// Crear elemento "p" para generar la ul de la tarjeta
 const urlOutput = document.createElement("p");
 urlOutput.style.wordBreak = "break-word";
 if (shareSection) {
   shareSection.appendChild(urlOutput);
 }
 
-// ===== FUNÇÕES =====
+// Funciones
 
 function toggleSection(btnClass, contentClass) {
   const button = document.querySelector(`.${btnClass}`);
@@ -48,6 +50,14 @@ function toggleSection(btnClass, contentClass) {
       icon.classList.toggle("fa-arrow-down");
     }
   });
+}
+
+function updateCardBackground() {
+  const selectedRadio = document.querySelector('input[name="elemento"]:checked');
+  if (!selectedRadio || !previewCard) return;
+
+  previewCard.classList.remove("agua", "fuego", "tierra", "aire");
+  previewCard.classList.add(selectedRadio.value);
 }
 
 function connectInputToPreviewAndStorage(
@@ -175,16 +185,16 @@ async function sendFormData(event) {
 
     if (result.success) {
       const url = `https://dev.adalab.es/api/info/${result.infoID}`;
-      urlOutput.innerHTML = `✅ Tarjeta criada: <a href="${url}" target="_blank">${url}</a>`;
+      urlOutput.innerHTML = `✅ Tarjeta creada: <a href="${url}" target="_blank">${url}</a>`;
     } else {
-      urlOutput.textContent = `❌ Erro: ${result.error}`;
+      urlOutput.textContent = `❌ Error: ${result.error}`;
     }
   } catch (error) {
-    urlOutput.textContent = "❌ Erro ao criar a tarjeta: " + error.message;
+    urlOutput.textContent = "❌ Error al crear la tarjeta: " + error.message;
   }
 }
 
-// ===== EXECUÇÃO =====
+// Ejecución
 
 toggleSection("js_toggleDesign", "js_containerDesign");
 toggleSection("js_toggleFill", "js_containerFill");
@@ -212,6 +222,11 @@ connectInputToPreviewAndStorage(
   "form_instagram",
   (val) => (val ? (val.startsWith("@") ? val : "@" + val) : "")
 );
+
+updateCardBackground();
+elementRadios.forEach(radio => {
+  radio.addEventListener("change", updateCardBackground);
+});
 
 initImage();
 initColor();

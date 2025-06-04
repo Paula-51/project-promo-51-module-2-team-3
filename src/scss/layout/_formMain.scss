@@ -129,6 +129,39 @@
     box-shadow: 0 0 100px #9b59b6;
   }
 
+  .js_preview_card.agua {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/water.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.js_preview_card.fuego {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/fire.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.js_preview_card.tierra {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/earth.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.js_preview_card.aire {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/air.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+  //Ocultar las secciones
+  .collapsed {
+  display: none;
+  }
+
   //medias queries tablet//
   @media screen and (max-width: 780px) {
     .all {

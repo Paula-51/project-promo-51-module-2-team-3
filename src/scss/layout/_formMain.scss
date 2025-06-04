@@ -7,6 +7,14 @@
 }
 
 /*Sección del formulario */
+.toggleDesign {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 .create {
   flex: 1;
   background-color: vars.$color-bg;
@@ -65,29 +73,10 @@
     flex-direction: column;
     align-items: center;
   
-    background-image: url('../images/cat-pattern.jpeg'); // ajusta ruta si es necesario
+    // background-image: url('../images/cat-pattern.jpeg'); // ajusta ruta si es necesario
+    background-color: vars.$color-primary;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .preview {
-    position: relative;
-    overflow: hidden;
-  
-    &::before {
-      content:'';
-      position: absolute;
-      inset: 0;
-      background: rgba(254, 254, 254, 0.733); 
-      z-index: 0;
-      size-adjust: cover;
-    }
-  
-    > * {
-      position: relative;
-      z-index: 1;
-    }
   }
   
   

@@ -2,9 +2,32 @@
 
 
 /* Estilo general */
-h1, h2, h3 {
+
+.page {
+  min-height: 100vh;
+  background-image: url('/images/pattern.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+h1 {
   font-family: vars.$font-title;
-  font-size: 45px;
+  font-size: 10em;
+  color: vars.$color-emphasis;
+  margin-block: 100px;
+}
+h2 {
+  font-family: vars.$font-title;
+  font-size: 40px;
+  color: vars.$color-emphasis;
+  margin-block: 10px;
+}
+
+h3 {
+  font-family: vars.$font-title;
+  font-size: 30px;
   color: vars.$color-emphasis;
   margin-block: 10px;
 }
@@ -12,36 +35,28 @@ h1, h2, h3 {
 body {
   font-family: vars.$font-body;
   font-size: 16px;
-  background: vars.$color-bg;
   color: vars.$color-emphasis;
   margin: 0;
   padding: 0;
 }
 
-/* Contenedor principal */
-.all {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-  gap: 1rem;
-  max-width: 100%;
-}
-
-/*Previsualización*/
 
 /*página principal*/
+
 .recuadro {
   border: 2px solid #7f55b1;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 600px;
   margin: 30px auto;
-  background-color: #9b7ebd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(155, 126, 189, 0.8); // #9b7ebd con opacidad
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
+
+
 .h2_main {
   text-align: center;
-  font-size: 32px;
+  font-size: 45px;
   margin-top: 20px;
   margin-bottom: 30px;
 }
@@ -77,17 +92,41 @@ body {
   text-align: center;
   margin-top: 30px;
 }
+
 .boton_main button {
   font-size: 22px;
   padding: 12px 30px;
-  color: #7f55b1;
+  color: white;
   cursor: pointer;
-  background-color: #ffe1e0;
+  background: linear-gradient(135deg, vars.$color-bg, vars.$color-secondary);
   border: none;
   border-radius: 6px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   font-weight: bold;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 50px;
+
+  &:hover {
+    background: linear-gradient(135deg, vars.$color-secondary, vars.$color-bg);
+    transform: scale(1.05);
+  }
 }
+
+@media screen and (max-width: 430px) {
+  .recuadro {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .page {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .boton_main button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+

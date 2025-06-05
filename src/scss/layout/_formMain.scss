@@ -185,17 +185,7 @@
     font-style: vars.$font-title;
     font-size: 20px;
     color: white;
-    
-  }
-
-  .hashtag {
-    background-color: rgba(121, 79, 157, 0.8);
-    color: white;
-    padding-inline: 5px;
-    padding-block: 0.2px;
-    border-radius: 10px;
-    margin-block:4px;
-    
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
   }
   
   .preview__card img {
@@ -229,7 +219,6 @@
     box-shadow: 0 0 100px #9b59b6;
   }
 
-  
  
 
   .js_preview_card.agua {

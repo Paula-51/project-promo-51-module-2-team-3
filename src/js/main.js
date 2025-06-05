@@ -12,7 +12,6 @@ const shareSection = document.querySelector(".js_containerShare");
 const previewCard = document.querySelector(".js_preview_card");
 const elementRadios = document.querySelectorAll('input[name="elemento"]');
 
-
 const signosConIconos = {
   aries: "Aries ♈",
   tauro: "Touro ♉",
@@ -36,6 +35,12 @@ if (shareSection) {
 }
 
 // Funciones
+// Função para formatar Instagram
+function formatInstagram(val) {
+  if (!val) return "";
+  if (val.startsWith("@")) return val;
+  return "@" + val;
+}
 
 function toggleSection(btnClass, contentClass) {
   const button = document.querySelector(`.${btnClass}`);
@@ -99,22 +104,43 @@ function updateSigno() {
 }
 
 function initImage() {
-  if (!imageInput || !imagePreview) return;
+  const imageInput = document.querySelector(".js_image");
+  const imagePreview = document.querySelector(".js__profile-image"); // img de la tarjeta
+  const imageMini = document.querySelector(".js__profile-preview"); // miniatura (div)
 
+  if (!imageInput || !imagePreview || !imageMini) return;
+
+  // Cargar imagen guardada si existe
+  window.addEventListener("load", () => {
+    const savedImage = localStorage.getItem("imageData");
+    if (savedImage) {
+      imagePreview.src = savedImage;
+      imageMini.style.backgroundImage = `url("${savedImage}")`;
+    } else {
+      imagePreview.src = "https://placecats.com/100/100";
+      imageMini.style.backgroundImage = `url("https://placecats.com/100/100")`;
+    }
+  });
+
+  // Al subir imagen nueva
   imageInput.addEventListener("change", () => {
     const file = imageInput.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        imagePreview.src = reader.result;
-        localStorage.setItem("imageData", reader.result);
+        const imageData = reader.result;
+        imagePreview.src = imageData; // img en la tarjeta
+        imageMini.style.backgroundImage = `url("${imageData}")`; // miniatura
+        localStorage.setItem("imageData", imageData);
       };
       reader.readAsDataURL(file);
     } else {
       imagePreview.src = "https://placecats.com/100/100";
+      imageMini.style.backgroundImage = `url("https://placecats.com/100/100")`;
       localStorage.removeItem("imageData");
     }
   });
+
 
   window.addEventListener("load", () => {
     const savedImage = localStorage.getItem("imageData");
@@ -127,12 +153,32 @@ function initImage() {
 }
 
 function initColor() {
-  if (!colorInput) return;
+  if (!colorInput || !imagePreview || !previewCard) return;
+
+  // Seleccionar la imagen grande dentro de la tarjeta de previsualización
+  const cardImage = document.querySelector(".preview__card img");
+
+  // Cargar color guardado
   const savedColor = localStorage.getItem("form_color");
-  if (savedColor) colorInput.value = savedColor;
+  if (savedColor) {
+    colorInput.value = savedColor;
+    imagePreview.style.borderColor = savedColor;   // miniatura
+    if (cardImage) {
+      cardImage.style.borderColor = savedColor;     // imagen grande
+    }
+    previewCard.style.borderColor = savedColor;
+    previewCard.style.boxShadow = `0 0 10px ${savedColor}`;
+  }
 
   colorInput.addEventListener("input", () => {
-    localStorage.setItem("form_color", colorInput.value);
+    const newColor = colorInput.value;
+    imagePreview.style.borderColor = newColor;      // miniatura
+    if (cardImage) {
+      cardImage.style.borderColor = newColor;        // imagen grande
+    }
+    previewCard.style.borderColor = newColor;
+    previewCard.style.boxShadow = `0 0 10px ${newColor}`;
+    localStorage.setItem("form_color", newColor);
   });
 }
 
@@ -156,7 +202,7 @@ function initReset() {
 async function sendFormData(event) {
   event.preventDefault();
 
-  urlOutput.textContent = "⏳ Criando tarjeta...";
+  urlOutput.textContent = "⏳ Creando tarjeta...";
 
   const selectedDesign = document.querySelector(
     'input[name="elemento"]:checked'
@@ -169,7 +215,7 @@ async function sendFormData(event) {
     field3: document.querySelector("#signo-zodiacal").value,
     field4: document.querySelector("#birthDate").value,
     field5: document.querySelector("#mobileNumber").value,
-    field6: document.querySelector("#instagram").value,
+    field6: formatInstagram(document.querySelector("#instagram").value),
     field7: document.querySelector("#color").value,
     photo: localStorage.getItem("imageData") || "",
   };
@@ -224,7 +270,9 @@ connectInputToPreviewAndStorage(
 );
 
 updateCardBackground();
-elementRadios.forEach(radio => {
+
+updateCardBackground();
+elementRadios.forEach((radio) => {
   radio.addEventListener("change", updateCardBackground);
 });
 
@@ -243,3 +291,5 @@ initReset();
 if (formBtn) {
   formBtn.addEventListener("click", sendFormData);
 }
+
+

@@ -63,17 +63,43 @@
     cursor: pointer;
   }
   
+  .print-foto{
+    display:flex;
+  }
+  
   .input-foto{
     display:none;
   }
 
-  .img-sm {
+  .img-lg {
+    background-color: vars.$color-secondary;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 55px;
+  }
+
+  .botonfalso {
+    margin-block: 20px;
+
+  }
+
+  .img-bt {
     background-color: vars.$color-secondary;
     padding:15px;
     border-radius: 12px;
     width: 25%;
     margin-top: 55px;
-  
+  }
+
+  .miniphoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 2px solid #7e57c2;
+    box-shadow: 0 4px 12px rgba(126, 87, 194, 0.5);
+    transition: transform 0.3s ease;
   }
   
   input, select {

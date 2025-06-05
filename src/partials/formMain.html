@@ -2,33 +2,33 @@
   <div class="all">
     <div class="create">
       <section class="design">
-        <div class="js_toggleDesign">
+        <div class="js_toggleDesign toggleDesign">
           <h2>Elige tu diseño:</h2>
           <i class="fa-solid fa-arrow-down"></i>
         </div>
-        <div class="js_containerDesign collapsed">
+        <div class="js_containerDesign collapsed elements radio-group">
           <input type="radio" id="design1" name="elemento" value="agua" checked />
-          <label for="design1">Agua (escorpio, piscis, cancer)</label>
+          <label for="design1">Agua (Escorpio, Piscis, Cáncer)</label>
 
           <input type="radio" id="design2" name="elemento" value="fuego" />
-          <label for="design2">Fuego (sagitario, leo, aries)</label>
+          <label for="design2">Fuego (Sagitario, Leo, Aries)</label>
 
-          <input type="radio" id="design3" name="elemento" value="tierra" />
-          <label for="design3">Tierra (capricornio, tauro, virgo)</label>
+          <input type="radio" id="design3" name="elemento" value="tierra" >
+          <label for="design3">Tierra (Capricornio, Tauro, Virgo)</label>
 
           <input type="radio" id="design4" name="elemento" value="aire"/>
-          <label for="design4">Aire (acuario, géminis, libra)</label>
+          <label for="design4">Aire (Acuario, Géminis, Libra)</label>
         </div>
       </section>
 
       <section class="form">
-        <div class="js_toggleFill">
-          <h2>Rellena:</h2>
+        <div class="js_toggleFill toggleDesign">
+          <h2>Rellena: </h2>
           <i class="fa-solid fa-arrow-down js_headerFill"></i>
         </div>
         <div class="js_containerFill collapsed">
           <form method="POST">
-            <label for="name">Nombre:</label>
+            <label for="name"></label>
             <input type="text" id="name" placeholder="Escribe aquí tu nombre" />
 
             <label for="zodiacSign">Signo:</label>
@@ -64,15 +64,19 @@
             <label for="instagram">Tu @ instagram</label>
             <input type="text" id="instagram" placeholder="@hola" />
 
-            <label for="image">Sube una foto tuya:</label>
-            <input type="file" id="image" class="js_image" />
+            <div class="input-foto"><label for="foto"></label>
+            <div></div><input type="file" id="image" class="js__profile-upload-btn " /></div>
+            <div class="paint-photo"><div class="botonfalso"><label class="img-bt"  for="image">Sube una foto tuya:</label></div>
+            <div class="js__profile-preview miniphoto"></div>
+          </div>
+
           </form>
         </div>
       </section>
 
       <section class="share">
-        <div class="js_toggleShare">
-          <h2>Comparte</h2>
+        <div class="js_toggleShare toggleDesign">
+          <h2>Comparte: </h2>
           <i class="fa-solid fa-arrow-down js_headerShare"></i>
         </div>
         <div class="js_containerShare collapsed">
@@ -92,18 +96,15 @@
             Aquí va el signo
           </p>
           <img
-            class="js_preview__cardimg"
+            class="js_preview__cardimg js__profile-image"
             src="https://placecats.com/100/100"
-            alt="foto"
-          />
-          <p
-            class="js_datePreview"
-            data-placeholder="Aquí va la fecha de nacimiento"
-          >
+            alt="foto"/>
+          <p class="js_datePreview"
+            data-placeholder="Aquí va la fecha de nacimiento">
             Aquí va la fecha de nacimiento
           </p>
           <p class="js_mobilePreview" data-placeholder="Aquí va el mobil">
-            Aquí va el mobil
+            Aquí va el móvil
           </p>
           <p class="js_igPreview" data-placeholder="Aquí va @hola">
             Aquí va @hola

@@ -2,8 +2,8 @@
 
 .all {
   display: flex;
-  padding: 5%;
-
+  padding-inline: 5%;
+  padding-bottom: 2%;
 }
 
 /*Sección del formulario */
@@ -63,10 +63,12 @@
     cursor: pointer;
   }
   
-  .print-foto{
+  .paint-photo{
     display:flex;
+    align-items: center;
+    gap: 60px;
   }
-  
+
   .input-foto{
     display:none;
   }
@@ -93,13 +95,13 @@
   }
 
   .miniphoto {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 100%;
     object-fit: cover;
-    border: 2px solid #7e57c2;
-    box-shadow: 0 4px 12px rgba(126, 87, 194, 0.5);
-    transition: transform 0.3s ease;
+    border: 3px solid #7e57c2;
+    box-shadow: 0 12px 23px rgba(126, 87, 194, 0.8);
+    transition: transform 0.5s ease;
   }
   
   input, select {

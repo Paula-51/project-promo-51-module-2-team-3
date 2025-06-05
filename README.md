@@ -62,4 +62,8 @@ This command will:
 
 - Watch all files in the src/ folder and refresh the browser automatically on save.
 
+<<<<<<< HEAD
 > **Note**: You need to have Node.js (version 14 or higher) installed to run the project.
+=======
+> **Note**: You need to have Node.js (version 14 or higher) installed to run the project.
+>>>>>>> origin/dev

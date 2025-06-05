@@ -27,13 +27,14 @@ const signosConIconos = {
   piscis: "Piscis ♓",
 };
 
-// Crear elemento "p" para mostrar URL
+// Crear elemento "p" para generar la ul de la tarjeta
 const urlOutput = document.createElement("p");
 urlOutput.style.wordBreak = "break-word";
 if (shareSection) {
   shareSection.appendChild(urlOutput);
 }
 
+// Funciones
 // Função para formatar Instagram
 function formatInstagram(val) {
   if (!val) return "";
@@ -57,9 +58,7 @@ function toggleSection(btnClass, contentClass) {
 }
 
 function updateCardBackground() {
-  const selectedRadio = document.querySelector(
-    'input[name="elemento"]:checked'
-  );
+  const selectedRadio = document.querySelector('input[name="elemento"]:checked');
   if (!selectedRadio || !previewCard) return;
 
   previewCard.classList.remove("agua", "fuego", "tierra", "aire");
@@ -267,8 +266,10 @@ connectInputToPreviewAndStorage(
   "#instagram",
   ".js_igPreview",
   "form_instagram",
-  formatInstagram
+  (val) => (val ? (val.startsWith("@") ? val : "@" + val) : "")
 );
+
+updateCardBackground();
 
 updateCardBackground();
 elementRadios.forEach((radio) => {

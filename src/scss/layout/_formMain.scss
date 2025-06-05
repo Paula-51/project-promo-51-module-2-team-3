@@ -194,12 +194,11 @@
     width:200px;
     height: 200px;
     object-fit: cover;
-    border: 2px solid;
+    border: 2px solid #ff7300;
     position: center;
   }
 
-  //miniatura de la imagen
-  .js__profile-preview {
+    .js__profile-preview {
   width: 70px;
   height: 70px;
   border-radius: 50%;

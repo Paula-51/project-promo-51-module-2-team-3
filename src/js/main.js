@@ -267,8 +267,10 @@ connectInputToPreviewAndStorage(
   "#instagram",
   ".js_igPreview",
   "form_instagram",
-  formatInstagram
+  (val) => (val ? (val.startsWith("@") ? val : "@" + val) : "")
 );
+
+updateCardBackground();
 
 updateCardBackground();
 elementRadios.forEach((radio) => {

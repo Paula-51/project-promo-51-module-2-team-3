@@ -194,9 +194,20 @@
     width:200px;
     height: 200px;
     object-fit: cover;
-    border: 2px solid #ff7300;
+    border: 2px solid;
     position: center;
   }
+
+  //miniatura de la imagen
+  .js__profile-preview {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #7e57c2;
+  box-shadow: 0 12px 23px rgba(126, 87, 194, 0.8);
+}
   
   .preview button {
     margin-top: 2rem;

@@ -105,22 +105,43 @@ function updateSigno() {
 }
 
 function initImage() {
-  if (!imageInput || !imagePreview) return;
+  const imageInput = document.querySelector(".js_image");
+  const imagePreview = document.querySelector(".js__profile-image"); // img de la tarjeta
+  const imageMini = document.querySelector(".js__profile-preview"); // miniatura (div)
 
+  if (!imageInput || !imagePreview || !imageMini) return;
+
+  // Cargar imagen guardada si existe
+  window.addEventListener("load", () => {
+    const savedImage = localStorage.getItem("imageData");
+    if (savedImage) {
+      imagePreview.src = savedImage;
+      imageMini.style.backgroundImage = `url("${savedImage}")`;
+    } else {
+      imagePreview.src = "https://placecats.com/100/100";
+      imageMini.style.backgroundImage = `url("https://placecats.com/100/100")`;
+    }
+  });
+
+  // Al subir imagen nueva
   imageInput.addEventListener("change", () => {
     const file = imageInput.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        imagePreview.src = reader.result;
-        localStorage.setItem("imageData", reader.result);
+        const imageData = reader.result;
+        imagePreview.src = imageData; // img en la tarjeta
+        imageMini.style.backgroundImage = `url("${imageData}")`; // miniatura
+        localStorage.setItem("imageData", imageData);
       };
       reader.readAsDataURL(file);
     } else {
       imagePreview.src = "https://placecats.com/100/100";
+      imageMini.style.backgroundImage = `url("https://placecats.com/100/100")`;
       localStorage.removeItem("imageData");
     }
   });
+
 
   window.addEventListener("load", () => {
     const savedImage = localStorage.getItem("imageData");
@@ -133,12 +154,32 @@ function initImage() {
 }
 
 function initColor() {
-  if (!colorInput) return;
+  if (!colorInput || !imagePreview || !previewCard) return;
+
+  // Seleccionar la imagen grande dentro de la tarjeta de previsualización
+  const cardImage = document.querySelector(".preview__card img");
+
+  // Cargar color guardado
   const savedColor = localStorage.getItem("form_color");
-  if (savedColor) colorInput.value = savedColor;
+  if (savedColor) {
+    colorInput.value = savedColor;
+    imagePreview.style.borderColor = savedColor;   // miniatura
+    if (cardImage) {
+      cardImage.style.borderColor = savedColor;     // imagen grande
+    }
+    previewCard.style.borderColor = savedColor;
+    previewCard.style.boxShadow = `0 0 10px ${savedColor}`;
+  }
 
   colorInput.addEventListener("input", () => {
-    localStorage.setItem("form_color", colorInput.value);
+    const newColor = colorInput.value;
+    imagePreview.style.borderColor = newColor;      // miniatura
+    if (cardImage) {
+      cardImage.style.borderColor = newColor;        // imagen grande
+    }
+    previewCard.style.borderColor = newColor;
+    previewCard.style.boxShadow = `0 0 10px ${newColor}`;
+    localStorage.setItem("form_color", newColor);
   });
 }
 
@@ -200,7 +241,7 @@ async function sendFormData(event) {
   }
 }
 
-// Execução
+// Ejecución
 
 toggleSection("js_toggleDesign", "js_containerDesign");
 toggleSection("js_toggleFill", "js_containerFill");
@@ -249,3 +290,5 @@ initReset();
 if (formBtn) {
   formBtn.addEventListener("click", sendFormData);
 }
+
+

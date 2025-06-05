@@ -203,7 +203,7 @@ function initReset() {
 async function sendFormData(event) {
   event.preventDefault();
 
-  urlOutput.textContent = "⏳ Criando tarjeta...";
+  urlOutput.textContent = "⏳ Creando tarjeta...";
 
   const selectedDesign = document.querySelector(
     'input[name="elemento"]:checked'

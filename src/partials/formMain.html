@@ -64,8 +64,10 @@
             <label for="instagram">Tu @ instagram</label>
             <input type="text" id="instagram" placeholder="@hola" />
 
-            <label for="image">Sube una foto tuya:</label>
-            <input type="file" id="image" class="js_image" />
+            <div class="input-foto"><label for="foto"></label>
+            <input type="file" id="image" class="js__profile-upload-btn " /></div>
+            <div ><label class="img-sm"  for="image">Sube una foto tuya:</label><div class="js__profile-preview"></div>
+
           </form>
         </div>
       </section>
@@ -92,18 +94,15 @@
             Aquí va el signo
           </p>
           <img
-            class="js_preview__cardimg"
+            class="js_preview__cardimg js__profile-image"
             src="https://placecats.com/100/100"
-            alt="foto"
-          />
-          <p
-            class="js_datePreview"
-            data-placeholder="Aquí va la fecha de nacimiento"
-          >
+            alt="foto"/>
+          <p class="js_datePreview"
+            data-placeholder="Aquí va la fecha de nacimiento">
             Aquí va la fecha de nacimiento
           </p>
           <p class="js_mobilePreview" data-placeholder="Aquí va el mobil">
-            Aquí va el mobil
+            Aquí va el móvil
           </p>
           <p class="js_igPreview" data-placeholder="Aquí va @hola">
             Aquí va @hola

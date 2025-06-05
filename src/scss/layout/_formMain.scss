@@ -63,7 +63,18 @@
     cursor: pointer;
   }
   
+  .input-foto{
+    display:none;
+  }
 
+  .img-sm {
+    background-color: vars.$color-secondary;
+    padding:15px;
+    border-radius: 12px;
+    width: 25%;
+    margin-top: 55px;
+  
+  }
   
   input, select {
     width: 100%;

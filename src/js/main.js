@@ -1,7 +1,7 @@
 "use strict";
 
 const imageInput = document.querySelector(".js_image");
-const imagePreview = document.querySelector(".js_preview__cardimg");
+const imagePreview = document.querySelector(".js__profile-image");
 const colorInput = document.querySelector(".js_color");
 const signoInput = document.querySelector(".js_signo-zodiacal");
 const signoPreview = document.querySelector(".js_signoPreview");
@@ -11,6 +11,7 @@ const formBtn = document.querySelector(".js_formBtn");
 const shareSection = document.querySelector(".js_containerShare");
 const previewCard = document.querySelector(".js_preview_card");
 const elementRadios = document.querySelectorAll('input[name="elemento"]');
+const eligeFondoElement = document.querySelector(".js_containerDesign");
 
 const signosConIconos = {
   aries: "Aries ♈",
@@ -27,6 +28,13 @@ const signosConIconos = {
   piscis: "Piscis ♓",
 };
 
+const elementoMap = {
+  agua: 1,
+  fuego: 2,
+  tierra: 3,
+  aire: 4,
+};
+
 // Crear elemento "p" para mostrar URL
 const urlOutput = document.createElement("p");
 urlOutput.style.wordBreak = "break-word";
@@ -34,7 +42,7 @@ if (shareSection) {
   shareSection.appendChild(urlOutput);
 }
 
-// Função para formatar Instagram
+// Función para formatear Instagram
 function formatInstagram(val) {
   if (!val) return "";
   if (val.startsWith("@")) return val;
@@ -63,7 +71,7 @@ function updateCardBackground() {
   if (!selectedRadio || !previewCard) return;
 
   previewCard.classList.remove("agua", "fuego", "tierra", "aire");
-  previewCard.classList.add(selectedRadio.value);
+  previewCard.classList.add(selectedRadio.value.toLowerCase());
 }
 
 function connectInputToPreviewAndStorage(
@@ -106,12 +114,11 @@ function updateSigno() {
 
 function initImage() {
   const imageInput = document.querySelector(".js_image");
-  const imagePreview = document.querySelector(".js__profile-image"); // img de la tarjeta
-  const imageMini = document.querySelector(".js__profile-preview"); // miniatura (div)
+  const imagePreview = document.querySelector(".js__profile-image");
+  const imageMini = document.querySelector(".js__profile-preview");
 
   if (!imageInput || !imagePreview || !imageMini) return;
 
-  // Cargar imagen guardada si existe
   window.addEventListener("load", () => {
     const savedImage = localStorage.getItem("imageData");
     if (savedImage) {
@@ -123,15 +130,14 @@ function initImage() {
     }
   });
 
-  // Al subir imagen nueva
   imageInput.addEventListener("change", () => {
     const file = imageInput.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
         const imageData = reader.result;
-        imagePreview.src = imageData; // img en la tarjeta
-        imageMini.style.backgroundImage = `url("${imageData}")`; // miniatura
+        imagePreview.src = imageData;
+        imageMini.style.backgroundImage = `url("${imageData}")`;
         localStorage.setItem("imageData", imageData);
       };
       reader.readAsDataURL(file);
@@ -141,42 +147,26 @@ function initImage() {
       localStorage.removeItem("imageData");
     }
   });
-
-
-  window.addEventListener("load", () => {
-    const savedImage = localStorage.getItem("imageData");
-    if (savedImage) {
-      imagePreview.src = savedImage;
-    } else {
-      imagePreview.src = "https://placecats.com/100/100";
-    }
-  });
 }
 
 function initColor() {
   if (!colorInput || !imagePreview || !previewCard) return;
 
-  // Seleccionar la imagen grande dentro de la tarjeta de previsualización
   const cardImage = document.querySelector(".preview__card img");
 
-  // Cargar color guardado
   const savedColor = localStorage.getItem("form_color");
   if (savedColor) {
     colorInput.value = savedColor;
-    imagePreview.style.borderColor = savedColor;   // miniatura
-    if (cardImage) {
-      cardImage.style.borderColor = savedColor;     // imagen grande
-    }
+    imagePreview.style.borderColor = savedColor;
+    if (cardImage) cardImage.style.borderColor = savedColor;
     previewCard.style.borderColor = savedColor;
     previewCard.style.boxShadow = `0 0 10px ${savedColor}`;
   }
 
   colorInput.addEventListener("input", () => {
     const newColor = colorInput.value;
-    imagePreview.style.borderColor = newColor;      // miniatura
-    if (cardImage) {
-      cardImage.style.borderColor = newColor;        // imagen grande
-    }
+    imagePreview.style.borderColor = newColor;
+    if (cardImage) cardImage.style.borderColor = newColor;
     previewCard.style.borderColor = newColor;
     previewCard.style.boxShadow = `0 0 10px ${newColor}`;
     localStorage.setItem("form_color", newColor);
@@ -196,7 +186,13 @@ function initReset() {
       if (placeholder) preview.textContent = placeholder;
     });
 
-    localStorage.clear();
+    localStorage.removeItem("form_name");
+    localStorage.removeItem("form_birthDate");
+    localStorage.removeItem("form_mobileNumber");
+    localStorage.removeItem("form_instagram");
+    localStorage.removeItem("form_color");
+    localStorage.removeItem("form_signo");
+    localStorage.removeItem("imageData");
   });
 }
 
@@ -208,7 +204,9 @@ async function sendFormData(event) {
   const selectedDesign = document.querySelector(
     'input[name="elemento"]:checked'
   );
-  const field1Value = selectedDesign ? selectedDesign.value : "";
+  const field1Value = selectedDesign
+    ? elementoMap[selectedDesign.value.toLowerCase()]
+    : 0;
 
   const dataToSend = {
     field1: field1Value,
@@ -220,6 +218,8 @@ async function sendFormData(event) {
     field7: document.querySelector("#color").value,
     photo: localStorage.getItem("imageData") || "",
   };
+
+  console.log(dataToSend);
 
   try {
     const response = await fetch("https://dev.adalab.es/api/info/data", {
@@ -290,5 +290,3 @@ initReset();
 if (formBtn) {
   formBtn.addEventListener("click", sendFormData);
 }
-
-

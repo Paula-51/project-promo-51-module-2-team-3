@@ -130,3 +130,19 @@ body {
   }
 }
 
+.round-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border:2px;
+  overflow: hidden;
+  display: inline-block;
+  background-size: contain;
+}
+
+#name {
+  color: rgb(42, 6, 65);
+  font-size: 80px;
+  font-weight: bold;
+}
+

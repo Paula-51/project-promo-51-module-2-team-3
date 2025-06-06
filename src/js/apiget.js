@@ -8,7 +8,6 @@ const signEl = document.getElementById("sign");
 const birthdateEl = document.getElementById("birthdate");
 const mobileEl = document.getElementById("mobile");
 const instagramEl = document.getElementById("instagram");
-const colorEl = document.getElementById("color");
 const photoEl = document.getElementById("photo");
 const cardSection = document.getElementById("card");
 
@@ -20,14 +19,14 @@ async function getCardData() {
 
     if (result.success) {
       const data = result.data;
+      console.log(data);
 
       // 4. Pintar los datos en la tarjeta
-      nameEl.textContent = data.field2 || "Nombre no disponible";
-      signEl.textContent = `Signo: ${data.field3}`;
-      birthdateEl.textContent = `Fecha de nacimiento: ${data.field4}`;
-      mobileEl.textContent = `📱 ${data.field5}`;
-      instagramEl.textContent = `📸 @${data.field6}`;
-      colorEl.textContent = `🎨 Color favorito: ${data.field7}`;
+      nameEl.textContent = ` ${data.field2}`;
+      signEl.textContent = ` ${data.field3}`;
+      birthdateEl.textContent = ` ${data.field4}`;
+      mobileEl.textContent = ` ${data.field5}`;
+      instagramEl.textContent = `${data.field6}`;
 
       // Pintar imagen como fondo de un div circular
       if (data.photo) {

@@ -1,8 +1,5 @@
 "use strict";
 
-<<<<<<< HEAD
-console.log(">> Ready :)");
-=======
 const imageInput = document.querySelector(".js_image");
 const imagePreview = document.querySelector(".js__profile-image");
 const colorInput = document.querySelector(".js_color");
@@ -315,4 +312,3 @@ initReset();
 if (formBtn) {
   formBtn.addEventListener("click", sendFormData);
 }
->>>>>>> origin/dev

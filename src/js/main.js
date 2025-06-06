@@ -11,11 +11,8 @@ const formBtn = document.querySelector(".js_formBtn");
 const shareSection = document.querySelector(".js_containerShare");
 const previewCard = document.querySelector(".js_preview_card");
 const elementRadios = document.querySelectorAll('input[name="elemento"]');
-<<<<<<< HEAD
 const eligeFondoElement = document.querySelector(".js_containerDesign");
-=======
 const linkCard = document.querySelector(".js_viewBtn");
->>>>>>> c614c9af164b11fba544be4a79c15b2a153e6ae0
 
 const signosConIconos = {
   aries: "Aries ♈",
@@ -188,7 +185,6 @@ function initReset() {
       if (placeholder) preview.textContent = placeholder;
     });
 
-<<<<<<< HEAD
     localStorage.removeItem("form_name");
     localStorage.removeItem("form_birthDate");
     localStorage.removeItem("form_mobileNumber");
@@ -196,7 +192,6 @@ function initReset() {
     localStorage.removeItem("form_color");
     localStorage.removeItem("form_signo");
     localStorage.removeItem("imageData");
-=======
 
     const imagePreview = document.querySelector(".js__profile-image");
     const imageMini = document.querySelector(".js__profile-preview");
@@ -218,7 +213,6 @@ function initReset() {
     }
 
     localStorage.clear();
->>>>>>> e2dbc4e2e1a6c0c1ee95a9ed7cdee9eba4c97372
   });
 }
 
@@ -234,17 +228,6 @@ async function sendFormData(event) {
     ? elementoMap[selectedDesign.value.toLowerCase()]
     : 0;
 
-const valueMap = {
-  "agua": 1,
-  "fuego": 2,
-  "tierra": 3,
-  "aire": 4
-};
-
-const mappedValue = valueMap[field1Value] || 0; // 0 si el valor no es válido
-
-// Ahora puedes enviar mappedValue a la API
-
 
   const dataToSend = {
     field1: mappedValue,
@@ -256,13 +239,7 @@ const mappedValue = valueMap[field1Value] || 0; // 0 si el valor no es válido
     field7: document.querySelector("#color").value,
     photo: localStorage.getItem("imageData") || "",
   };
-<<<<<<< HEAD
 
-  console.log(dataToSend);
-
-=======
-  console.log("Datos a enviar:", dataToSend);
->>>>>>> c614c9af164b11fba544be4a79c15b2a153e6ae0
   try {
     const response = await fetch("https://dev.adalab.es/api/info/data", {
       method: "POST",

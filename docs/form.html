@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zodiacards</title>
+    <link rel="icon" type="image/png" href="images/Logo darkPurple.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Ms+Madi&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="" />
+    <script src="https://kit.fontawesome.com/a4911ed5e1.js"
+      crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="/project-promo-51-module-2-team-3/assets/main-9444d7d2.css">
+  </head>
+
+  <body>
+    <div class="page">
+      <header>
+	<div class="containerHeader">
+		<img class="containerHeader__logo" src="./images/Logo rose.png" alt="" />
+		<h1 class="containerHeader__h1">Zodiacards</h1>
+	</div>
+</header>
+
+      <main class="page__main">
+  <div class="all">
+    <div class="create">
+      <section class="design">
+        <div class="js_toggleDesign toggleDesign">
+          <h2>Elige tu diseño:</h2>
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+        <div class="js_containerDesign collapsed elements radio-group">
+          <input type="radio" id="design1" name="elemento" value="agua" checked />
+          <label for="design1">Agua (Escorpio, Piscis, Cáncer)</label>
+
+          <input type="radio" id="design2" name="elemento" value="fuego" />
+          <label for="design2">Fuego (Sagitario, Leo, Aries)</label>
+
+          <input type="radio" id="design3" name="elemento" value="tierra" >
+          <label for="design3">Tierra (Capricornio, Tauro, Virgo)</label>
+
+          <input type="radio" id="design4" name="elemento" value="aire"/>
+          <label for="design4">Aire (Acuario, Géminis, Libra)</label>
+        </div>
+      </section>
+
+      <section class="form">
+        <div class="js_toggleFill toggleDesign">
+          <h2>Rellena: </h2>
+          <i class="fa-solid fa-arrow-down js_headerFill"></i>
+        </div>
+        <div class="js_containerFill collapsed">
+          <form method="POST">
+            <label for="name"></label>
+            <input type="text" id="name" placeholder="Escribe aquí tu nombre" />
+
+            <label for="zodiacSign">Signo:</label>
+            <select
+              id="signo-zodiacal"
+              name="signo-zodiacal"
+              class="js_signo-zodiacal">
+              <option value="">Elige tu signo</option>
+              <option value="aries">Aries ♈</option>
+              <option value="tauro">Tauro ♉</option>
+              <option value="geminis">Géminis ♊</option>
+              <option value="cancer">Cáncer ♋</option>
+              <option value="leo">Leo ♌</option>
+              <option value="virgo">Virgo ♍</option>
+              <option value="libra">Libra ♎</option>
+              <option value="escorpio">Escorpio ♏</option>
+              <option value="sagitario">Sagitario ♐</option>
+              <option value="capricornio">Capricornio ♑</option>
+              <option value="acuario">Acuario ♒</option>
+              <option value="piscis">Piscis ♓</option>
+            </select>
+
+            <label for="color">Elige tu color favorito:</label>
+            <input type="color" id="color" class="js_color" />
+
+            <label for="birthDate">Tu fecha de nacimiento:</label>
+            <input type="date" id="birthDate" />
+
+            <label for="mobileNumber">Escribe tu número de móvil</label>
+            <input type="number" id="mobileNumber" placeholder="123456789" />
+
+            <label for="instagram">Tu @ instagram</label>
+            <input type="text" id="instagram" placeholder="@hola" />
+
+            <div class="input-foto"><label for="foto"></label>
+            <div></div><input type="file" id="image" class="js_image js__profile-upload-btn " /></div>
+            <div class="paint-photo"><div class="botonfalso"><label class="img-bt"  for="image">Sube una foto tuya:</label></div>
+            <div class="js__profile-preview miniphoto js_preview__cardimg"></div>
+          </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="share">
+        <div class="js_toggleShare toggleDesign">
+          <h2>Comparte: </h2>
+          <i class="fa-solid fa-arrow-down js_headerShare"></i>
+        </div>
+        <div class="js_containerShare collapsed">
+          <button class="formBtn js_formBtn">Crea tarjeta</button>
+          <a class="ViewBtn js_viewBtn"> </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="preview">
+      <section>
+        <h2>Previsualización tarjeta</h2>
+        <div class="preview__card js_preview_card">
+          <p class="js_namePreview" data-placeholder="Aquí va el nombre"> 
+          Aquí va el nombre </p>
+          <p class="js_signoPreview" data-placeholder="Aquí va el signo"> 
+          Aquí va el signo </p>
+          <img class="js_preview__cardimg js__profile-image" src="https://placecats.com/100/100" alt="foto">
+          <p class="js_datePreview" data-placeholder="Aquí va la fecha de nacimiento"> Aquí va la fecha de nacimiento</p>
+          <p class="js_mobilePreview" data-placeholder="Aquí va el mobil"> Aquí va el móvil</p>
+          <p class="js_igPreview" data-placeholder="Aquí va @hola"> Aquí va @hola</p>
+        </div>
+        <button type="button" class="js_resetBtn">Reset</button>
+      </section>
+    </div>
+  </div>
+</main>
+
+      <footer class="footer">
+	<div class="footer__mensaje">
+		<span> Conectando almas bajo las constelaciones del zodiaco. </span>
+	</div>
+
+	<div class="footer__info">
+		<p>
+			© 2025 Team 3 de Adalab PROMO 51. Guiados por las estrellas y los signos
+			del zodiaco. Todos los derechos reservados.
+		</p>
+	</div>
+</footer>
+
+    </div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

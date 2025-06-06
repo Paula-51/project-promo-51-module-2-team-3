@@ -31,7 +31,7 @@ const inputFilesList = {
 }
 
 export default defineConfig({
-  base: "./",
+  base: "/project-promo-51-module-2-team-3/", // Reemplaza con el nombre de tu repositorio
   root: "src",
   publicDir: "../public",
   build: {

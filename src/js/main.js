@@ -230,7 +230,7 @@ async function sendFormData(event) {
 
 
   const dataToSend = {
-    field1: mappedValue,
+    field1: field1Value,
     field2: document.querySelector("#name").value,
     field3: document.querySelector("#signo-zodiacal").value,
     field4: document.querySelector("#birthDate").value,

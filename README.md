@@ -1,13 +1,9 @@
-<p align="center">
+git m<p align="center">
   <img src="./public/images/Logo darkPurple.png" alt="Zodiacards logo" width="150" />
 </p>
 
-<<<<<<< HEAD
-# 🏹 Zodiacards 
-=======
 # 🏹 Zodiacards
 
->>>>>>> c71222b3ecfd9e8662bca6b00f834b69286e3cc7
 Welcome to **Zodiacards**, the ultimate personalized astrology card generator!  
 This web app was created as part of a final evaluation for Module 2 of the Web Development Course.
 
@@ -47,31 +43,18 @@ If you, too, share our obsession with astrology, constellations, and everything 
 
 ```
 npm install
-<<<<<<< HEAD
-````
-
-=======
 ```
->>>>>>> c71222b3ecfd9e8662bca6b00f834b69286e3cc7
 
 **To start the project**:
 
 Once the dependencies are installed, you can start the dev server.
 You’ll need to do this every time you want to work on the project:
 
-<<<<<<< HEAD
-````
-npm run dev
-or
-npm start
-````
-=======
 ```
 npm run dev
 or
 npm start
 ```
->>>>>>> c71222b3ecfd9e8662bca6b00f834b69286e3cc7
 
 This command will:
 
@@ -79,13 +62,4 @@ This command will:
 
 - Watch all files in the src/ folder and refresh the browser automatically on save.
 
-<<<<<<< HEAD
 > **Note**: You need to have Node.js (version 14 or higher) installed to run the project.
-
-=======
-<<<<<<< HEAD
-> **Note**: You need to have Node.js (version 14 or higher) installed to run the project.
-=======
-> **Note**: You need to have Node.js (version 14 or higher) installed to run the project.
->>>>>>> origin/dev
->>>>>>> c71222b3ecfd9e8662bca6b00f834b69286e3cc7

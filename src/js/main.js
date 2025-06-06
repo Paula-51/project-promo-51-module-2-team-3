@@ -178,18 +178,17 @@ function initColor() {
 }
 
 function initReset() {
-  if (!resetButton || !form || !imagePreview) return;
+  if (!resetButton || !form) return;
 
   resetButton.addEventListener("click", () => {
     form.reset();
-
-    imagePreview.src = "https://placecats.com/100/100";
 
     document.querySelectorAll(".preview__card p").forEach((preview) => {
       const placeholder = preview.getAttribute("data-placeholder");
       if (placeholder) preview.textContent = placeholder;
     });
 
+<<<<<<< HEAD
     localStorage.removeItem("form_name");
     localStorage.removeItem("form_birthDate");
     localStorage.removeItem("form_mobileNumber");
@@ -197,6 +196,29 @@ function initReset() {
     localStorage.removeItem("form_color");
     localStorage.removeItem("form_signo");
     localStorage.removeItem("imageData");
+=======
+
+    const imagePreview = document.querySelector(".js__profile-image");
+    const imageMini = document.querySelector(".js__profile-preview");
+
+    const defaultImage = "https://placecats.com/100/100";
+
+    if (imagePreview) {
+      imagePreview.src = defaultImage;
+    }
+
+    if (imageMini) {
+      imageMini.style.backgroundImage = `url("${defaultImage}")`;
+    }
+
+
+    if (previewCard) {
+      previewCard.style.borderColor = "";
+      previewCard.style.boxShadow = "";
+    }
+
+    localStorage.clear();
+>>>>>>> e2dbc4e2e1a6c0c1ee95a9ed7cdee9eba4c97372
   });
 }
 

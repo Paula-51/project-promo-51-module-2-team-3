@@ -19,9 +19,24 @@
   <body>
     <div class="page">
         <load src="./partials/header.html" />
-        <load src="./partials/main.html" />
-        <load src="./partials/footer.html" />
+        <div class="preview">
+          <section>
+            <h2>Tarjeta</h2>
+            <div class="preview__card js_preview_card">
+               <p class="js_namePreview" data-placeholder="Aquí va el nombre"> 
+              Aquí va el nombre </p>
+              <p class="js_signoPreview" data-placeholder="Aquí va el signo"> 
+              Aquí va el signo </p>
+              <img class="js_preview__cardimg js__profile-image" src="https://placecats.com/100/100" alt="foto"/>
+              <p class="js_datePreview" data-placeholder="Aquí va la fecha de nacimiento"> Aquí va la fecha de nacimiento</p>
+              <p class="js_mobilePreview" data-placeholder="Aquí va el mobil"> Aquí va el móvil</p>
+              <p class="js_igPreview" data-placeholder="Aquí va @hola"> Aquí va @hola</p>
+            </div>
+          </section>
+        </div>
+      </div>
+      <load src="./partials/footer.html" />
     </div>
-    <script src="./js/main.js"></script>
+    <script src="./js/apiget.js"></script>
   </body>
 </html>

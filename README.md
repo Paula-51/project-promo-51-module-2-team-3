@@ -1,4 +1,4 @@
-<p align="center">
+git m<p align="center">
   <img src="./public/images/Logo darkPurple.png" alt="Zodiacards logo" width="150" />
 </p>
 

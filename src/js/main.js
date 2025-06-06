@@ -11,10 +11,11 @@ const formBtn = document.querySelector(".js_formBtn");
 const shareSection = document.querySelector(".js_containerShare");
 const previewCard = document.querySelector(".js_preview_card");
 const elementRadios = document.querySelectorAll('input[name="elemento"]');
+const linkCard = document.querySelector(".js_viewBtn");
 
 const signosConIconos = {
   aries: "Aries ♈",
-  tauro: "Touro ♉",
+  tauro: "Tauro ♉",
   geminis: "Geminis ♊",
   cancer: "Cancer ♋",
   leo: "Leo ♌",
@@ -22,7 +23,7 @@ const signosConIconos = {
   libra: "Libra ♎",
   escorpio: "Escorpio ♏",
   sagitario: "Sagitario ♐",
-  capricornio: "Capricórnio ♑",
+  capricornio: "Capricornio ♑",
   acuario: "Acuario ♒",
   piscis: "Piscis ♓",
 };
@@ -183,17 +184,35 @@ function initColor() {
 }
 
 function initReset() {
-  if (!resetButton || !form || !imagePreview) return;
+  if (!resetButton || !form) return;
 
   resetButton.addEventListener("click", () => {
     form.reset();
-
-    imagePreview.src = "https://placecats.com/100/100";
 
     document.querySelectorAll(".preview__card p").forEach((preview) => {
       const placeholder = preview.getAttribute("data-placeholder");
       if (placeholder) preview.textContent = placeholder;
     });
+
+
+    const imagePreview = document.querySelector(".js__profile-image");
+    const imageMini = document.querySelector(".js__profile-preview");
+
+    const defaultImage = "https://placecats.com/100/100";
+
+    if (imagePreview) {
+      imagePreview.src = defaultImage;
+    }
+
+    if (imageMini) {
+      imageMini.style.backgroundImage = `url("${defaultImage}")`;
+    }
+
+
+    if (previewCard) {
+      previewCard.style.borderColor = "";
+      previewCard.style.boxShadow = "";
+    }
 
     localStorage.clear();
   });
@@ -209,8 +228,20 @@ async function sendFormData(event) {
   );
   const field1Value = selectedDesign ? selectedDesign.value : "";
 
+const valueMap = {
+  "agua": 1,
+  "fuego": 2,
+  "tierra": 3,
+  "aire": 4
+};
+
+const mappedValue = valueMap[field1Value] || 0; // 0 si el valor no es válido
+
+// Ahora puedes enviar mappedValue a la API
+
+
   const dataToSend = {
-    field1: field1Value,
+    field1: mappedValue,
     field2: document.querySelector("#name").value,
     field3: document.querySelector("#signo-zodiacal").value,
     field4: document.querySelector("#birthDate").value,
@@ -219,7 +250,7 @@ async function sendFormData(event) {
     field7: document.querySelector("#color").value,
     photo: localStorage.getItem("imageData") || "",
   };
-
+  console.log("Datos a enviar:", dataToSend);
   try {
     const response = await fetch("https://dev.adalab.es/api/info/data", {
       method: "POST",
@@ -230,7 +261,7 @@ async function sendFormData(event) {
     const result = await response.json();
 
     if (result.success) {
-      const url = `https://dev.adalab.es/api/info/${result.infoID}`;
+      const url = `card.html?id=${result.infoID}`;
       urlOutput.innerHTML = `✅ Tarjeta creada: <a href="${url}" target="_blank">${url}</a>`;
     } else {
       urlOutput.textContent = `❌ Error: ${result.error}`;

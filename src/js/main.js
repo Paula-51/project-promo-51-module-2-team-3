@@ -240,6 +240,7 @@ async function sendFormData(event) {
     photo: localStorage.getItem("imageData") || "",
   };
 
+
   try {
     const response = await fetch("https://dev.adalab.es/api/info/data", {
       method: "POST",

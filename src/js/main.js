@@ -243,7 +243,7 @@ const mappedValue = valueMap[field1Value] || 0; // 0 si el valor no es válido
     const result = await response.json();
 
     if (result.success) {
-      const url = `https://dev.adalab.es/api/info/${result.infoID}`;
+      const url = `card.html?id=${result.infoID}`;
       urlOutput.innerHTML = `✅ Tarjeta creada: <a href="${url}" target="_blank">${url}</a>`;
     } else {
       urlOutput.textContent = `❌ Error: ${result.error}`;

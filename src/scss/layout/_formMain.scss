@@ -1,95 +1,212 @@
-@use '../core/variables' as vars;
+@use "../core/variables" as vars;
 
 .all {
-    display: flex;
+  display: flex;
+  padding-inline: 5%;
+  padding-bottom: 2%;
 }
-  
+
 /*Sección del formulario */
+.toggleDesign {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 .create {
-    flex: 1;
-    background-color: var(--color-bg);
-    border-radius: 15px;
-    padding: 2rem;
- }
-  
-  /* Estilos para secciones del formulario */
-  .design, .form, .share {
+  flex: 1;
+  background-color: rgba(127, 85, 177, 0.6);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-right: 3rem;
+}
+
+.fa-solid{ 
+  color: vars.$color-secondary;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  margin-left: 2rem;
+
+}
+
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-bottom: 2rem;
   }
   
-  h2 {
-    color: var(--color-emphasis);
-    margin-bottom: 1rem;
+  .radio-group label {
+    flex: 1 1 calc(50% - 1rem);
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: #fafafa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    color: #5a2a83;
+    user-select: none;
   }
   
-  label {
-    display: block;
-    margin-top: 1rem;
-    font-size: 0.9rem;
+  .radio-group label:hover {
+    background-color: #f0e9ff;
+    border-color: #7e57c2;
+  }
+  
+  .radio-group input[type="radio"] {
+    margin-right: 0.8rem;
+    cursor: pointer;
+  }
+  
+  .paint-photo{
+    display:flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .input-foto{
+    display:none;
+  }
+
+  .img-lg {
+    background-color: vars.$color-secondary;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 55px;
+  }
+
+  .botonfalso {
+    margin-block: 20px;
+
+  }
+
+  .img-bt {
+    background-color: vars.$color-secondary;
+    padding:15px;
+    border-radius: 12px;
+    width: 25%;
+    margin-top: 55px;
+  }
+
+  .miniphoto {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 3px solid #7e57c2;
+    box-shadow: 0 12px 23px rgba(126, 87, 194, 0.8);
+    transition: transform 0.5s ease;
   }
   
   input, select {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.6rem 0.8rem;
     margin-top: 0.3rem;
-    border-radius: 0.5rem;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
     border: none;
-    background: var(--color-primary);
-    color: var(--color-emphasis)
+    background: vars.$color-primary;
+    color: #000000;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
   }
   
+  input:focus, select:focus {
+    border-color: #7e57c2;
+    outline: none;
+    background: #fff;
+  }
+  
+  /* Color picker */
   input[type="color"] {
     padding: 0.2rem;
     height: 40px;
+    cursor: pointer;
   }
-  
+
+
   button.formBtn {
     margin-top: 1.5rem;
-    padding: 0.7rem 1.5rem;
+    padding: 0.8rem 1.8rem;
     border: none;
     border-radius: 0.7rem;
-    background: var(--color-secondary);
-    color: var(--color-emphasis);
-    font-weight: bold;
+    background: vars.$color-secondary;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 0 0 10px #ffd700;
+    box-shadow: 0 4px 12px rgba(126, 87, 194, 0.5);
+    transition: background-color 0.3s ease;
   }
   
-  /* Sección de previsualización */
+  button.formBtn:hover {
+    background: #633db3;
+  }
+  
+  /* Sección de previsualización *//////
   .preview {
     flex: 1;
-    background: var(--color-secondary);
     border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 0 15px #3498db;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(129, 101, 159, 0.6);
+    
   }
   
+  .preview_job {
+    text-align: center;
+    margin-bottom: 2rem;;
+
+  }
+
   .preview__card {
-    background: var(--color-primary);
+    background: vars.$color-emphasis;
     padding: 1.5rem;
     border-radius: 1rem;
-    width: 100%;
+    color:#9b59b6;
+    width: 400px;
+    height: 500px;
     text-align: center;
-    border: 2px solid #ffd700;
-    box-shadow: 0 0 10px #9b59b6;
+    border: 2px solid vars.$color-secondary;
+    box-shadow: 0 0 10px vars.$color-secondary;
   }
   
   .preview__card p {
     margin: 0.5rem 0;
-    font-style: italic;
+    font-style: vars.$font-title;
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0.5, 0.9);
   }
   
   .preview__card img {
     border-radius: 50%;
     margin: 1rem auto;
-    width: 100px;
-    height: 100px;
+    width:200px;
+    height: 200px;
     object-fit: cover;
-    border: 2px solid #ffd700;
+    border: 2px solid #ff7300;
+    position: center;
   }
+
+    .js__profile-preview {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #7e57c2;
+  box-shadow: 0 12px 23px rgba(126, 87, 194, 0.8);
+}
   
   .preview button {
     margin-top: 2rem;
@@ -99,8 +216,110 @@
     border: none;
     border-radius: 0.7rem;
     cursor: pointer;
-    box-shadow: 0 0 10px #9b59b6;
+    box-shadow: 0 0 100px #9b59b6;
+  }
+
+ 
+
+  .js_preview_card.agua {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/water.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.js_preview_card.fuego {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/fire.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.js_preview_card.tierra {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/earth.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.js_preview_card.aire {
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url("/images/air.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+  //Ocultar las secciones
+  .collapsed {
+  display: none;
+  }
+
+  //medias queries tablet//
+  @media screen and (max-width: 780px) {
+    .all {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .create,
+    .preview {
+      width: 100%;
+      max-width: 780px;
+    }
+  }
+  //medias queries mobile//
+  @media screen and (max-width: 780px) {
+    .all {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .create,
+    .preview {
+      width: 100%;
+      max-width: 780px;
+      margin-right: 0;
+    }
   }
   
-
+  @media screen and (max-width: 430px) {
+    .all {
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+  
+    .create,
+    .preview {
+      padding-right: 1rem;
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    .preview__card {
+      width: 90%;
+    }
+  
+    .preview__card img {
+      width: 140px;
+      height: 140px;
+    }
+  
+    form input,
+    form select,
+    form label {
+      font-size: 1rem;
+    }
+  
+    .radio-group label {
+      flex: 1 1 100%;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
   

@@ -11,10 +11,10 @@ const instagramEl = document.getElementById("instagram");
 const photoEl = document.getElementById("photo");
 const cardSection = document.getElementById("card");
 
-// 3. Obtener los datos desde la API //
+// 3. Obtener los datos desde la API //https://dev.adalab.es/api/info/
 async function getCardData() {
   try {
-    const response = await fetch(`https://dev.adalab.es/api/info/${uuid}`);
+    const response = await fetch(`https://paula-51.github.io/project-promo-51-module-2-team-3/${uuid}`);
     const result = await response.json();
 
     if (result.success) {

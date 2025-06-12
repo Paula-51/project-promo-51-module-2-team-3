@@ -312,3 +312,4 @@ initReset();
 if (formBtn) {
   formBtn.addEventListener("click", sendFormData);
 }
+import "./apiget.js";
